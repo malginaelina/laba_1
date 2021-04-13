@@ -8,8 +8,8 @@ struct Matrix* createMatrix_complex(int size, int type)
     struct Matrix* mtrx = (struct Matrix*)malloc(sizeof(struct Matrix));
     mtrx->size = size;
     mtrx->type = type;
-    mtrx->matrix = malloc(size * size * type);
-    for (int i = 0; i < size * size * type; i++)
+    mtrx->matrix = malloc(size * size * sizeof(struct Complex));
+    for (int i = 0; i < size * size; i++)
         *((char*)mtrx->matrix + i) = 0;
     return mtrx;
 }
