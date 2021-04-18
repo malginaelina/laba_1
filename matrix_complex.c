@@ -10,6 +10,7 @@ struct Matrix* createMatrix_complex(int size)
     mtrx->elementSize = sizeof(struct Complex);
     mtrx->sum = add_complex;
     mtrx->multi = multiply_complex;
+    mtrx->multi_scalar = multiply_on_scalar_complex;
     for (int i = 0; i < size * size; i++)
         *((char*)mtrx->matrix + i) = 0;
     return mtrx;
@@ -54,7 +55,7 @@ void addMatrix_complex(struct Matrix* m1, struct Matrix* m2, struct Matrix* res)
 
 void multiplyMatrixOnScalar_complex(struct Matrix* m1, float scalar, struct Matrix* res){
     for (int i = 0; i < res->size * res->size; i++)    {
-            *((struct Complex*)res->matrix + i) = *multiplyOnScalar_complex(((struct Complex*)m1->matrix + i), scalar);
+            *((struct Complex*)res->matrix + i) = *multiply_on_scalar_complex(((struct Complex*)m1->matrix + i), scalar);
     }
     outputMatrix_complex(res);
 }

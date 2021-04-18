@@ -50,7 +50,7 @@ void tests() {
 
     printf("Scalar: 3\n");
     printf("Multiplication of Matrix1 on scalar:\n");
-    res = multiply_matrix_on_scalar(m1, 3);
+    res = multiply_matrix_on_scalar(m1, 3.2);
     outputMatrix_float(res);
 
     free(m1);

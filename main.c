@@ -87,6 +87,7 @@ int main()
                             printf("Matrix2:\n");
                             outputMatrix_float(mat2);
                             struct Matrix *res = add_matrix(mat1, mat2);
+                            printf("Result of the addition:\n");
                             outputMatrix_complex(res);
                         }
                             break;
@@ -119,6 +120,7 @@ int main()
                             printf("Matrix2:\n");
                             outputMatrix_float(mat2);
                             struct Matrix *res = multiply_matrix(mat1, mat2);
+                            printf("Result of the multiplication:\n");
                             outputMatrix_float(res);
                         }
                             break;
@@ -138,6 +140,7 @@ int main()
                             printf("Matrix2:\n");
                             outputMatrix_float(mat2);
                             struct Matrix *res = multiply_matrix(mat1, mat2);
+                            printf("Result of the multiplication:\n");
                             outputMatrix_complex(res);
                         }
                             break;
@@ -156,7 +159,7 @@ int main()
                             break;
                         case 1:{
                             int size;
-                            const float *scalar;
+                            float scalar;
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
@@ -170,12 +173,13 @@ int main()
                             outputMatrix_float(mat1);
 
                             struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                            printf("Result of the multiplication on scalar:\n");
                             outputMatrix_float(res);
                         }
                             break;
                         case 2:{
                             int size;
-                            const float *scalar;
+                            float scalar;
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
@@ -189,6 +193,7 @@ int main()
                             outputMatrix_float(mat1);
 
                             struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                            printf("Result of the multiplication on scalar:\n");
                             outputMatrix_complex(res);
                         }
                             break;

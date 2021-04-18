@@ -14,6 +14,12 @@ float *multiply_float(const float *a, const float *b){
     return c;
 }
 
+float *multiply_on_scalar_float(const float *a, float b){
+    float *c = calloc(1, sizeof(float));
+    *c = *a * b;
+    return c;
+}
+
 struct Matrix* createMatrix_float(int size){
     struct Matrix* mtrx = (struct Matrix*)malloc(sizeof(struct Matrix));
     mtrx->size = size;
@@ -21,6 +27,7 @@ struct Matrix* createMatrix_float(int size){
     mtrx->matrix = malloc(size * size * sizeof(float));
     mtrx->multi = multiply_float;
     mtrx->sum = add_float;
+    mtrx->multi_scalar = multiply_on_scalar_float;
     for (int i = 0; i < size * size; i++)
         *((char*)mtrx->matrix + i) = 0;
     return mtrx;

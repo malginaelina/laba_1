@@ -14,13 +14,15 @@ struct Matrix
     int elementSize;
     void *(*sum) (void *m1, void *m2);
     void *(*multi) (void *m1, void *m2);
+    void *(*multi_scalar) (void *m1, float scalar);
 };
 
 struct Matrix * add_matrix(struct Matrix *m1, struct Matrix *m2);
 struct Matrix * multiply_matrix(const struct Matrix *m1, const struct Matrix *m2);
-struct Matrix * multiply_matrix_on_scalar(const struct Matrix *m1, const float *scalar);
+struct Matrix * multiply_matrix_on_scalar(const struct Matrix *m1, float scalar);
 float *add_float(const float *a, const float *b);
 float *multiply_float(const float *a, const float *b);
+float *multiply_on_scalar_float(const float *a, float scalar);
 
 // матрицы вещественных чисел
 struct Matrix* createMatrix_float(int size);

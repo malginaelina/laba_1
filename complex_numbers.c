@@ -26,7 +26,7 @@ struct Complex *multiply_complex(struct Complex *a, struct Complex *b){
     return c;
 }
 
-struct Complex *multiplyOnScalar_complex(struct Complex *a, float scalar){
+struct Complex *multiply_on_scalar_complex(struct Complex *a, float scalar){
     struct Complex *c = (struct Complex*)malloc(sizeof(struct Complex));
     c->x = a->x * scalar;
     c->y = a->y * scalar;
