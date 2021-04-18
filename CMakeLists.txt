@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(Clion_project C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
-add_executable(Clion_project main.c functions.c functions.h tests.c tests.h)
+add_executable(Clion_project main.c tests.c tests.h matrix.h matrix_float.c matrix_complex.c complex_numbers.c complex_numbers.h matrix.c)

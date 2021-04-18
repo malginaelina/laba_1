@@ -1,21 +1,21 @@
 #include "matrix.h"
 #include <stdio.h>
-#include "complex_numbers.h"
-#include<malloc.h>
+#include <malloc.h>
 
-struct Matrix* createMatrix_complex(int size, int type)
+struct Matrix* createMatrix_complex(int size)
 {
     struct Matrix* mtrx = (struct Matrix*)malloc(sizeof(struct Matrix));
     mtrx->size = size;
-    mtrx->type = type;
     mtrx->matrix = malloc(size * size * sizeof(struct Complex));
+    mtrx->elementSize = sizeof(struct Complex);
+    mtrx->sum = add_complex;
+    mtrx->multi = multiply_complex;
     for (int i = 0; i < size * size; i++)
         *((char*)mtrx->matrix + i) = 0;
     return mtrx;
 }
 
 void inputMatrix_complex(struct Matrix* m1){
-
     for (int i = 0; i < m1->size * m1->size; i++)
         *((struct Complex*)m1->matrix + i) = *input_complex();
 }

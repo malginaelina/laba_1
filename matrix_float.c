@@ -1,14 +1,28 @@
 #include "matrix.h"
 #include <stdio.h>
-#include<malloc.h>
+#include <malloc.h>
 
-struct Matrix* createMatrix_float(int size, int type){
+float *add_float(const float *a, const float *b){
+    float *c = calloc(1, sizeof(float));
+    *c = *a + *b;
+    return c;
+}
+
+float *multiply_float(const float *a, const float *b){
+    float *c = calloc(1, sizeof(float));
+    *c = *a * *b;
+    return c;
+}
+
+struct Matrix* createMatrix_float(int size){
     struct Matrix* mtrx = (struct Matrix*)malloc(sizeof(struct Matrix));
     mtrx->size = size;
-    mtrx->type = type;
+    mtrx->elementSize = sizeof(float);
     mtrx->matrix = malloc(size * size * sizeof(float));
+    mtrx->multi = multiply_float;
+    mtrx->sum = add_float;
     for (int i = 0; i < size * size; i++)
-        *(char*)((char*)mtrx->matrix + i) = 0;
+        *((char*)mtrx->matrix + i) = 0;
     return mtrx;
 }
 
@@ -51,7 +65,6 @@ void addMatrix_float(struct Matrix* m1, struct Matrix* m2, struct Matrix* res){
 
 void multiplyMatrixOnScalar_float(struct Matrix* m1, float scalar, struct Matrix* res){
     for (int i = 0; i < res->size * res->size; i++)
-        if (m1->type == 1)
             *((float*)res->matrix + i) = *((float*)m1->matrix + i) * scalar;
 
     outputMatrix_float(res);

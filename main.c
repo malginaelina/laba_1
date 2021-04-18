@@ -1,187 +1,211 @@
-#include<stdio.h>
-#include<malloc.h>
+#include <stdio.h>
 #include "matrix.h"
 #include "tests.h"
 
+int dialog (const char *msgs[], int n)
+{
+    int choice;
+    do {
+        for (int i = 0; i < n; ++i)
+            puts(msgs[i]);
+        printf("> ");
+
+        choice = getchar() - '0';
+        while (getchar() != '\n');
+        if (choice < 0 || choice >= n)
+            printf("You're wrong. Try again!\n");
+
+    } while (choice < 0 || choice >= n);
+
+    return choice;
+}
+
+const char *MENU[] = {"0 - exit",
+                      "1 - add matrix",
+                      "2 - multiply matrix",
+                      "3 - multiply matrix on scalar",
+                      "4 - test"};
+const int SIZE_MENU = sizeof(MENU)/sizeof(MENU[0]);
+
+const char *MENU_TYPE[] = {"0 - exit",
+                           "1 - float",
+                           "2 - complex"};
+
+const int SIZE_MENU_TYPE = sizeof(MENU_TYPE)/sizeof(MENU_TYPE[0]);
+
 int main()
 {
+
     struct Matrix *mat1, *mat2;
-    struct Matrix *res;
-
-    int size1, size2;
-    int type1, type2, operation;
-    float scalar;
-    int flag = 1;
-
-    while (flag)
-    {
-        flag = 0;
-        printf("Choose the number of operation:\n1 - add matrix\n2 - multiply matrix\n3 - multiply matrix on scalar\n4 - test\n");
-        scanf_s("%d", &operation);
-        if (operation != 1 && operation != 2 && operation != 3 && operation != 4)
+    int menu;
+    do {
+        menu = dialog(MENU, SIZE_MENU);
+        switch(menu)
         {
-            printf("Wrong number of operation. Try one more time.\n");
-            flag = 1;
+            case 0:
+                break;
+            case 1:{
+                int t;
+                do{
+                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(t){
+                        case 0:
+                            break;
+                        case 1:{
+                            int size;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_float(size);
+                            mat2 = createMatrix_float(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_float(mat1);
+                            printf("Enter elements of Matrix2:\n");
+                            inputMatrix_float(mat2);
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+                            printf("Matrix2:\n");
+                            outputMatrix_float(mat2);
+                            struct Matrix *res = add_matrix(mat1, mat2);
+                            printf("Result of the addition:\n");
+                            outputMatrix_float(res);
+                        }
+                            break;
+                        case 2:{
+                            int size;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_complex(size);
+                            mat2 = createMatrix_complex(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_complex(mat1);
+                            printf("Enter elements of Matrix2:\n");
+                            inputMatrix_complex(mat2);
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+                            printf("Matrix2:\n");
+                            outputMatrix_float(mat2);
+                            struct Matrix *res = add_matrix(mat1, mat2);
+                            outputMatrix_complex(res);
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                } while(t);
+            }
+                break;
+            case 2:{
+                int t;
+                do{
+                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(t){
+                        case 0:
+                            break;
+                        case 1:{
+                            int size;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_float(size);
+                            mat2 = createMatrix_float(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_float(mat1);
+                            printf("Enter elements of Matrix2:\n");
+                            inputMatrix_float(mat2);
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+                            printf("Matrix2:\n");
+                            outputMatrix_float(mat2);
+                            struct Matrix *res = multiply_matrix(mat1, mat2);
+                            outputMatrix_float(res);
+                        }
+                            break;
+                        case 2:{
+                            int size;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_complex(size);
+                            mat2 = createMatrix_complex(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_complex(mat1);
+                            printf("Enter elements of Matrix2:\n");
+                            inputMatrix_complex(mat2);
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+                            printf("Matrix2:\n");
+                            outputMatrix_float(mat2);
+                            struct Matrix *res = multiply_matrix(mat1, mat2);
+                            outputMatrix_complex(res);
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                } while(t);
+            }
+                break;
+            case 3:{
+                int t;
+                do{
+                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(t){
+                        case 0:
+                            break;
+                        case 1:{
+                            int size;
+                            const float *scalar;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_float(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_float(mat1);
+                            printf("Input scalar:\n");
+                            scanf_s("%f", &scalar);
+                            getchar();
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+
+                            struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                            outputMatrix_float(res);
+                        }
+                            break;
+                        case 2:{
+                            int size;
+                            const float *scalar;
+                            printf("Input size of matrix:\n");
+                            scanf_s("%d", &size);
+                            getchar();
+                            mat1 = createMatrix_complex(size);
+                            printf("Enter elements of Matrix1:\n");
+                            inputMatrix_complex(mat1);
+                            printf("Input scalar:\n");
+                            scanf_s("%f", &scalar);
+                            getchar();
+                            printf("Matrix1:\n");
+                            outputMatrix_float(mat1);
+
+                            struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                            outputMatrix_complex(res);
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                } while(t);
+            }
+                break;
+            case 4:{
+                tests();
+            }
+                break;
+            default:
+                break;
         }
-    }
-
-        flag = 1;
-        while (flag) {
-            flag = 0;
-            if (operation != 4) {
-                printf("Enter size of Matrix1 nxn:\n");
-                scanf_s("%d", &size1);
-            printf("Enter type of data (1-float, 2-complex) for Matrix1:\n");
-            scanf_s("%d", &type1);
-            if (type1 != 1 && type1 != 2) {
-                printf("Wrong type of data. Try one more time.\n");
-                flag = 1;
-            }
-            if (operation != 3) {
-                printf("Enter size of Matrix2 nxn:\n");
-                scanf_s("%d", &size2);
-                if (size1 != size2) {
-                    printf("Different sizes. Try one more time.\n");
-                    flag = 1;
-                }
-                printf("Enter type of data (1-float, 2-complex) for Matrix2:\n");
-                scanf_s("%d", &type2);
-                if (type2 != 1 && type2 != 2) {
-                    printf("Wrong type of data. Try one more time.\n");
-                    flag = 1;
-                }
-                if (type1 != type2) {
-                    printf("Different types. Try one more time.\n");
-                    flag = 1;
-                }
-            }
-
-        }
-
-    }
-
-    switch (operation)
-    {
-        case 1:
-            if (type1 == 1){
-                mat1 = createMatrix_float(size1, type1);
-                mat2 = createMatrix_float(size1, type1);
-                res = createMatrix_float(size1, type1);
-                printf("Enter elements of Matrix1:\n");
-                inputMatrix_float(mat1);
-                printf("Enter elements of Matrix2:\n");
-                inputMatrix_float(mat2);
-                printf("\n");
-                printf("Matrix 1:\n");
-                outputMatrix_float(mat1);
-                printf("Matrix 2:\n");
-                outputMatrix_float(mat2);
-                printf("Result of the addition:\n");
-                addMatrix_float(mat1, mat2, res);
-                free(mat2);
-                free(res);
-                free(mat1);
-            }
-            else{
-                mat1 = createMatrix_complex(size1, type1);
-                mat2 = createMatrix_complex(size1, type1);
-                res = createMatrix_complex(size1, type1);
-                printf("Enter elements of Matrix1:\n");
-                inputMatrix_complex(mat1);
-                printf("Enter elements of Matrix2:\n");
-                inputMatrix_complex(mat2);
-                printf("\n");
-                printf("Matrix 1:\n");
-                outputMatrix_complex(mat1);
-                printf("Matrix 2:\n");
-                outputMatrix_complex(mat2);
-                printf("Result of the addition:\n");
-                addMatrix_complex(mat1, mat2, res);
-                free(mat2);
-                free(res);
-                free(mat1);
-            }
-            break;
-        case 2:
-            if (type1 == 1){
-                mat1 = createMatrix_float(size1, type1);
-                mat2 = createMatrix_float(size1, type1);
-                res = createMatrix_float(size1, type1);
-                printf("Enter elements of Matrix1:\n");
-                inputMatrix_float(mat1);
-                printf("Enter elements of Matrix2:\n");
-                inputMatrix_float(mat2);
-                printf("\n");
-                printf("Matrix 1:\n");
-                outputMatrix_float(mat1);
-                printf("Matrix 2:\n");
-                outputMatrix_float(mat2);
-                printf("Result of the multiplication:\n");
-                multiplyMatrix_float(mat1, mat2, res);
-                free(mat2);
-                free(res);
-                free(mat1);
-            }
-            else{
-                mat1 = createMatrix_complex(size1, type1);
-                mat2 = createMatrix_complex(size1, type1);
-                res = createMatrix_complex(size1, type1);
-                printf("Enter elements of Matrix1:\n");
-                inputMatrix_complex(mat1);
-                printf("Enter elements of Matrix2:\n");
-                inputMatrix_complex(mat2);
-                printf("\n");
-                printf("Matrix 1:\n");
-                outputMatrix_complex(mat1);
-                printf("Matrix 2:\n");
-                outputMatrix_complex(mat2);
-                printf("Result of the multiplication:\n");
-                multiplyMatrix_complex(mat1, mat2, res);
-                free(mat2);
-                free(res);
-                free(mat1);
-            }
-            break;
-        case 3:
-            if (type1 == 1){
-                mat1 = createMatrix_float(size1, type1);
-                res = createMatrix_float(size1, type1);
-                printf("Enter elements of Matrix:\n");
-                inputMatrix_float(mat1);
-                printf("\n");
-                printf("Matrix:\n");
-                outputMatrix_float(mat1);
-                printf("Enter scalar:");
-                scanf_s("%f", &scalar);
-                printf("\n");
-                printf("Result of the multiplication on scalar:\n");
-                multiplyMatrixOnScalar_float(mat1, scalar, res);
-                free(res);
-                free(mat1);
-            }
-            else{
-                mat1 = createMatrix_complex(size1, type1);
-                res = createMatrix_complex(size1, type1);
-                printf("Enter elements of Matrix:\n");
-                inputMatrix_complex(mat1);
-                printf("\n");
-                printf("Matrix:\n");
-                outputMatrix_complex(mat1);
-                printf("Enter scalar:");
-                scanf_s("%f", &scalar);
-                printf("\n");
-                printf("Result of the multiplication on scalar:\n");
-                multiplyMatrixOnScalar_complex(mat1, scalar, res);
-                free(res);
-                free(mat1);
-            }
-            break;
-        case 4:
-            tests();
-            break;
-        default:
-            break;
-    }
+    } while(menu);
 
     return 0;
 }
