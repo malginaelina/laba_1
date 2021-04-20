@@ -7,7 +7,7 @@ int dialog (const char *msgs[], int n)
     do {
         for (int i = 0; i < n; ++i)
             puts(msgs[i]);
-        printf("> ");
+        printf(">");
 
         choice = getchar() - '0';
         while (getchar() != '\n');
@@ -32,6 +32,14 @@ const char *MENU_TYPE[] = {"0 - exit",
 
 const int SIZE_MENU_TYPE = sizeof(MENU_TYPE)/sizeof(MENU_TYPE[0]);
 
+int proverka(int size){
+    int l;
+    if(size <= 0)
+        l = 1;
+    else l = 0;
+    return l;
+}
+
 int main()
 {
 
@@ -55,19 +63,25 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_float(size);
-                            mat2 = createMatrix_float(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_float(mat1);
-                            printf("Enter elements of Matrix2:\n");
-                            inputMatrix_float(mat2);
-                            printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
-                            printf("Matrix2:\n");
-                            outputMatrix_float(mat2);
-                            struct Matrix *res = add_matrix(mat1, mat2);
-                            printf("Result of the addition:\n");
-                            outputMatrix_float(res);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_float(size);
+                                mat2 = createMatrix_float(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_float(mat1);
+                                printf("Enter elements of Matrix2:\n");
+                                inputMatrix_float(mat2);
+                                printf("Matrix1:\n");
+                                outputMatrix_float(mat1);
+                                printf("Matrix2:\n");
+                                outputMatrix_float(mat2);
+                                struct Matrix *res = add_matrix(mat1, mat2);
+                                printf("Result of the addition:\n");
+                                outputMatrix_float(res);
+                                getchar();
+                            }
                         }
                             break;
                         case 2:{
@@ -75,23 +89,28 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_complex(size);
-                            mat2 = createMatrix_complex(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_complex(mat1);
-                            printf("Enter elements of Matrix2:\n");
-                            inputMatrix_complex(mat2);
-                            printf("Matrix1:\n");
-                            outputMatrix_complex(mat1);
-                            printf("Matrix2:\n");
-                            outputMatrix_complex(mat2);
-                            struct Matrix *res = add_matrix(mat1, mat2);
-                            printf("Result of the addition:\n");
-                            outputMatrix_complex(res);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_complex(size);
+                                mat2 = createMatrix_complex(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_complex(mat1);
+                                printf("Enter elements of Matrix2:\n");
+                                inputMatrix_complex(mat2);
+                                printf("Matrix1:\n");
+                                outputMatrix_complex(mat1);
+                                printf("Matrix2:\n");
+                                outputMatrix_complex(mat2);
+                                struct Matrix *res = add_matrix(mat1, mat2);
+                                printf("Result of the addition:\n");
+                                outputMatrix_complex(res);
+                                getchar();
+                            }
                         }
                             break;
-                        default:
-                            break;
+
                     }
                 } while(menu_type);
             }
@@ -108,19 +127,25 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_float(size);
-                            mat2 = createMatrix_float(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_float(mat1);
-                            printf("Enter elements of Matrix2:\n");
-                            inputMatrix_float(mat2);
-                            printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
-                            printf("Matrix2:\n");
-                            outputMatrix_float(mat2);
-                            struct Matrix *res = multiply_matrix(mat1, mat2);
-                            printf("Result of the multiplication:\n");
-                            outputMatrix_float(res);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_float(size);
+                                mat2 = createMatrix_float(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_float(mat1);
+                                printf("Enter elements of Matrix2:\n");
+                                inputMatrix_float(mat2);
+                                printf("Matrix1:\n");
+                                outputMatrix_float(mat1);
+                                printf("Matrix2:\n");
+                                outputMatrix_float(mat2);
+                                struct Matrix *res = multiply_matrix(mat1, mat2);
+                                printf("Result of the multiplication:\n");
+                                outputMatrix_float(res);
+                                getchar();
+                            }
                         }
                             break;
                         case 2:{
@@ -128,23 +153,29 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_complex(size);
-                            mat2 = createMatrix_complex(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_complex(mat1);
-                            printf("Enter elements of Matrix2:\n");
-                            inputMatrix_complex(mat2);
-                            printf("Matrix1:\n");
-                            outputMatrix_complex(mat1);
-                            printf("Matrix2:\n");
-                            outputMatrix_complex(mat2);
-                            struct Matrix *res = multiply_matrix(mat1, mat2);
-                            printf("Result of the multiplication:\n");
-                            outputMatrix_complex(res);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_complex(size);
+                                mat2 = createMatrix_complex(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_complex(mat1);
+                                printf("Enter elements of Matrix2:\n");
+                                inputMatrix_complex(mat2);
+                                printf("Matrix1:\n");
+                                outputMatrix_complex(mat1);
+                                printf("Matrix2:\n");
+                                outputMatrix_complex(mat2);
+                                struct Matrix *res = multiply_matrix(mat1, mat2);
+                                printf("Result of the multiplication:\n");
+                                outputMatrix_complex(res);
+                                getchar();
+                            }
+
                         }
                             break;
-                        default:
-                            break;
+
                     }
                 } while(menu_type);
             }
@@ -162,18 +193,25 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_float(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_float(mat1);
-                            printf("Input scalar:\n");
-                            scanf_s("%f", &scalar);
-                            getchar();
-                            printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_float(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_float(mat1);
+                                printf("Input scalar:\n");
+                                scanf_s("%f", &scalar);
+                                getchar();
+                                printf("Matrix1:\n");
+                                outputMatrix_float(mat1);
+                                printf("Scalar: %.2f", scalar);
+                                printf("\n");
+                                struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                                printf("Result of the multiplication on scalar:\n");
+                                outputMatrix_float(res);
+                            }
 
-                            struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
-                            printf("Result of the multiplication on scalar:\n");
-                            outputMatrix_float(res);
                         }
                             break;
                         case 2:{
@@ -182,21 +220,26 @@ int main()
                             printf("Input size of matrix:\n");
                             scanf_s("%d", &size);
                             getchar();
-                            mat1 = createMatrix_complex(size);
-                            printf("Enter elements of Matrix1:\n");
-                            inputMatrix_complex(mat1);
-                            printf("Input scalar:\n");
-                            scanf_s("%f", &scalar);
-                            getchar();
-                            printf("Matrix1:\n");
-                            outputMatrix_complex(mat1);
+                            if(proverka(size)){
+                                printf("You're wrong. Try again!\n");
+                            }
+                            else {
+                                mat1 = createMatrix_complex(size);
+                                printf("Enter elements of Matrix1:\n");
+                                inputMatrix_complex(mat1);
+                                printf("Input scalar:\n");
+                                scanf_s("%f", &scalar);
+                                getchar();
+                                printf("Matrix1:\n");
+                                outputMatrix_complex(mat1);
+                                printf("Scalar: %.2f", scalar);
+                                printf("\n");
+                                struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
+                                printf("Result of the multiplication on scalar:\n");
+                                outputMatrix_complex(res);
+                            }
 
-                            struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
-                            printf("Result of the multiplication on scalar:\n");
-                            outputMatrix_complex(res);
                         }
-                            break;
-                        default:
                             break;
                     }
                 } while(menu_type);
@@ -206,8 +249,7 @@ int main()
                 tests();
             }
                 break;
-            default:
-                break;
+
         }
     } while(menu);
 
