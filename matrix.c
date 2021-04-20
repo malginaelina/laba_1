@@ -1,5 +1,4 @@
 #include "matrix.h"
-#include <string.h>
 
 struct Matrix *add_matrix(struct Matrix *m1, struct Matrix *m2){
     struct Matrix *res = (struct Matrix*)malloc(sizeof(struct Matrix));

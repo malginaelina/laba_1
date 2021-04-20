@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include<malloc.h>
 
-struct Complex* input_complex()
+struct Complex *input_complex()
 {
     struct Complex* a = (struct Complex*)malloc(sizeof(struct Complex));
     printf("Enter real part:\n");

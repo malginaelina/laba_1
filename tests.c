@@ -1,7 +1,4 @@
 #include "tests.h"
-#include "matrix.h"
-#include <malloc.h>
-#include <stdio.h>
 
 struct Matrix *create_test(int size, int type)
 {
@@ -48,7 +45,7 @@ void tests() {
     res = add_matrix(m1, m2);
     outputMatrix_float(res);
 
-    printf("Scalar: 3\n");
+    printf("Scalar: 3.2\n");
     printf("Multiplication of Matrix1 on scalar:\n");
     res = multiply_matrix_on_scalar(m1, 3.2);
     outputMatrix_float(res);

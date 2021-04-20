@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "matrix.h"
 #include "tests.h"
 
@@ -45,10 +44,10 @@ int main()
             case 0:
                 break;
             case 1:{
-                int t;
+                int menu_type;
                 do{
-                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
-                    switch(t){
+                    menu_type = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(menu_type){
                         case 0:
                             break;
                         case 1:{
@@ -83,9 +82,9 @@ int main()
                             printf("Enter elements of Matrix2:\n");
                             inputMatrix_complex(mat2);
                             printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
+                            outputMatrix_complex(mat1);
                             printf("Matrix2:\n");
-                            outputMatrix_float(mat2);
+                            outputMatrix_complex(mat2);
                             struct Matrix *res = add_matrix(mat1, mat2);
                             printf("Result of the addition:\n");
                             outputMatrix_complex(res);
@@ -94,14 +93,14 @@ int main()
                         default:
                             break;
                     }
-                } while(t);
+                } while(menu_type);
             }
                 break;
             case 2:{
-                int t;
+                int menu_type;
                 do{
-                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
-                    switch(t){
+                    menu_type = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(menu_type){
                         case 0:
                             break;
                         case 1:{
@@ -136,9 +135,9 @@ int main()
                             printf("Enter elements of Matrix2:\n");
                             inputMatrix_complex(mat2);
                             printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
+                            outputMatrix_complex(mat1);
                             printf("Matrix2:\n");
-                            outputMatrix_float(mat2);
+                            outputMatrix_complex(mat2);
                             struct Matrix *res = multiply_matrix(mat1, mat2);
                             printf("Result of the multiplication:\n");
                             outputMatrix_complex(res);
@@ -147,14 +146,14 @@ int main()
                         default:
                             break;
                     }
-                } while(t);
+                } while(menu_type);
             }
                 break;
             case 3:{
-                int t;
+                int menu_type;
                 do{
-                    t = dialog(MENU_TYPE, SIZE_MENU_TYPE);
-                    switch(t){
+                    menu_type = dialog(MENU_TYPE, SIZE_MENU_TYPE);
+                    switch(menu_type){
                         case 0:
                             break;
                         case 1:{
@@ -190,7 +189,7 @@ int main()
                             scanf_s("%f", &scalar);
                             getchar();
                             printf("Matrix1:\n");
-                            outputMatrix_float(mat1);
+                            outputMatrix_complex(mat1);
 
                             struct Matrix *res = multiply_matrix_on_scalar(mat1, scalar);
                             printf("Result of the multiplication on scalar:\n");
@@ -200,7 +199,7 @@ int main()
                         default:
                             break;
                     }
-                } while(t);
+                } while(menu_type);
             }
                 break;
             case 4:{
